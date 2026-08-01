@@ -129,3 +129,42 @@ The application uses JWT-based authentication, a RESTful backend API, PostgreSQL
 │   Users + Tasks Data    │
 │                         │
 └─────────────────────────┘
+
+## 📁 Project Structure
+
+```text
+task-manager/
+│
+├── backend/
+│   ├── src/
+│   │   ├── config/
+│   │   ├── controllers/
+│   │   ├── middleware/
+│   │   ├── models/
+│   │   ├── routes/
+│   │   └── server.js
+│   │
+│   ├── tests/
+│   ├── Dockerfile
+│   ├── package.json
+│   └── ...
+│
+├── frontend/
+│   ├── src/
+│   │   ├── api/
+│   │   ├── components/
+│   │   ├── context/
+│   │   ├── pages/
+│   │   └── ...
+│   │
+│   ├── package.json
+│   └── ...
+│
+├── .github/
+│   └── workflows/
+│       └── ci.yml
+│
+├── docker-compose.yml
+├── render.yaml
+├── .gitignore
+└── README.md
