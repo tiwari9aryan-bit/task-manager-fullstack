@@ -1,0 +1,49 @@
+services:
+  - type: web
+    name: task-manager-api
+    runtime: node
+    rootDir: backend
+    buildCommand: npm install
+    startCommand: node src/server.js
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: JWT_SECRET
+        generateValue: true
+      - key: DB_HOST
+        fromDatabase:
+          name: task-manager-db
+          property: host
+      - key: DB_PORT
+        fromDatabase:
+          name: task-manager-db
+          property: port
+      - key: DB_NAME
+        fromDatabase:
+          name: task-manager-db
+          property: database
+      - key: DB_USER
+        fromDatabase:
+          name: task-manager-db
+          property: user
+      - key: DB_PASSWORD
+        fromDatabase:
+          name: task-manager-db
+          property: password
+
+  - type: web
+    name: task-manager-frontend
+    runtime: static
+    rootDir: frontend
+    buildCommand: npm install && npm run build
+    staticPublishPath: dist
+    envVars:
+      - key: VITE_API_URL
+        fromService:
+          name: task-manager-api
+          type: web
+          property: host
+
+databases:
+  - name: task-manager-db
+    plan: free
